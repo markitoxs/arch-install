@@ -70,3 +70,6 @@ echo /swapfile none swap defaults 0 0 >> /etc/fstab
 # auto-complete these essential commands
 echo complete -cf sudo >> /etc/bash.bashrc
 echo complete -cf man >> /etc/bash.bashrc
+
+# Install pacaur
+./pacaur.sh

@@ -81,6 +81,9 @@ echo "Entering the new system"
 # Enter the new system & Execute new stuff
 arch-chroot /mnt ./chroot.sh
 
+# Prepare to install pacaur
+cp ./pacaur.sh /mnt
+
 ## Once done remove non necessary files and reboot
 rm /mnt/chroot.sh
 rm /mnt/authorized_keys
