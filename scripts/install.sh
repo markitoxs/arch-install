@@ -39,7 +39,7 @@ echo 'Drive formatted as:'
 parted $DISK --script -- print
 
 
-# Encryption 
+# Encryption
 cryptsetup --verbose --cipher aes-xts-plain64 --key-size 512 --hash sha512 --iter-time 5000 --use-random luksFormat "$ROOT"
 cryptsetup luksOpen "$ROOT" luks
 
@@ -72,8 +72,10 @@ genfstab -pU /mnt >> /mnt/etc/fstab
 # Add tmp as a ramdisk
 echo "tmpfs	/tmp	tmpfs	defaults,noatime,mode=1777	0	0" >> /mnt/etc/fstab
 
-# Prepare to chroot
+# Prepare to chroot + copy pacaur script
 cp ./chroot.sh /mnt
+cp ./pacaur.sh /mnt
+
 cp ~/.ssh/authorized_keys /mnt
 echo "##################################################"
 echo "##################################################"
@@ -82,10 +84,10 @@ echo "Entering the new system"
 arch-chroot /mnt ./chroot.sh
 
 # Prepare to install pacaur
-cp ./pacaur.sh /mnt
 
 ## Once done remove non necessary files and reboot
 rm /mnt/chroot.sh
+rm /mnt/pacaur.sh
 rm /mnt/authorized_keys
 umount -R /mnt
 systemctl reboot

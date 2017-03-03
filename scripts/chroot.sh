@@ -13,7 +13,7 @@ mount --bind /hostrun/lvm /run/lvm
 sudo sed -i 's/MODULES=""/MODULES="ext4"/g' /etc/mkinitcpio.conf
 sudo sed -i 's/filesystems keyboard fsck/encrypt lvm2 filesystems keyboard fsck/g' /etc/mkinitcpio.conf
 
-# regenerate 
+# regenerate
 mkinitcpio -p linux
 
 # grub as a bootloader
