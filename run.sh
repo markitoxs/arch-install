@@ -10,6 +10,8 @@ HOST_ROOT="root@$HOST"
 
 PUBKEY=$(cat ~/.ssh/id_rsa.pub)
 
+# Make sure we remove the fingerprint
+ssh-keygen -r $HOST
 # copy your public key, so can ssh without a password later on
 ssh -tt -p "$PORT" "$HOST_ROOT" "mkdir -m 700 ~/.ssh; echo $PUBKEY > ~/.ssh/authorized_keys; chmod 600 ~/.ssh/authorized_keys"
 
