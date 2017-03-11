@@ -65,7 +65,7 @@ echo 'Server = http://mirrors.cat.pdx.edu/archlinux/$repo/os/$arch' > /etc/pacma
 pacman -Syy
 
 # would recommend to use linux-lts kernel if you are running a server environment, otherwise just use "linux"
-pacstrap /mnt $(pacman -Sqg base) base-devel grub openssh sudo ntp wget vim
+pacstrap /mnt $(pacman -Sqg base) base-devel grub openssh sudo ntp wget vim perl
 
 genfstab -pU /mnt >> /mnt/etc/fstab
 
@@ -80,10 +80,11 @@ cp ~/.ssh/authorized_keys /mnt
 echo "##################################################"
 echo "##################################################"
 echo "Entering the new system"
+echo "##################################################"
+echo "##################################################"
+
 # Enter the new system & Execute new stuff
 arch-chroot /mnt ./chroot.sh
-
-# Prepare to install pacaur
 
 ## Once done remove non necessary files and reboot
 rm /mnt/chroot.sh

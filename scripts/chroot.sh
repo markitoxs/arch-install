@@ -72,4 +72,16 @@ echo complete -cf sudo >> /etc/bash.bashrc
 echo complete -cf man >> /etc/bash.bashrc
 
 # Install pacaur
-./pacaur.sh
+echo '######################################################'
+echo '############ Installing  PACAUR ######################'
+echo '######################################################'
+
+sudo -H -u markitoxs bash -c 'curl -s https://gist.githubusercontent.com/Tadly/0e65d30f279a34c33e9b/raw/pacaur_install.sh | /bin/bash -l'
+
+echo '######################################################'
+echo '######################################################'
+echo ' Doing custom stuff'
+echo '######################################################'
+echo '######################################################'
+
+sudo -H -u markitoxs bash -c './pacaur.sh'
