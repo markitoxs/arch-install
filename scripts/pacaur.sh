@@ -19,13 +19,29 @@ stow zsh
 stow i3
 stow xresources
 
-# Special love
+# Special love for vim
 rm ~/.vim* -rf
 stow vim
 
 echo '############# Create config files ##############'
 echo 'exec i3' >> /home/markitoxs/.xinitrc
 
-echo '############# Droping into a shell: ##############'
+# Go back $HOME
+cd ~
+mkdir src
+# to maintain compatibility
+ln -s src Code
 
+touch .zshrc_secrets
+
+# Clone wal
+git clone https://github.com/dylanaraps/wal.git ~/src/wal/
+
+# Clone oh-my-zsh
+git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+
+# Work stuff
+pacaur -Sy --noedit --noconfirm rbenv
+
+echo '########## DONE - Droping into a shell: ##############'
 bash
