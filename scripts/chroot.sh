@@ -35,7 +35,7 @@ echo "$HOST" > /etc/hostname
 echo -e 'runtime! archlinux.vim\nsyntax on' > /etc/skel/.vimrc
 
 ## adding your normal user with additional wheel group so can sudo
-useradd -m -G wheel -s /bin/bash "$USERNAME"
+useradd -m -G wheel -s /bin/zsh "$USERNAME"
 
 ## adding public key both to root and user for ssh key access
 mkdir -m 700 "$HOME_DIR/.ssh"
