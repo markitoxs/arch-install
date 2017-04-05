@@ -84,6 +84,8 @@ echo "Entering the new system"
 echo "##################################################"
 echo "##################################################"
 
+TERM=xterm
+
 # Enter the new system & Execute new stuff
 arch-chroot /mnt ./chroot.sh
 

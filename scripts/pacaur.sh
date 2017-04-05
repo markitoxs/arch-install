@@ -1,27 +1,45 @@
 #!/bin/bash -l
 
 set -e 
+set TERM=xterm
 
 # Install pacaur
 echo '######################################################'
 echo '############ Installing  PACAUR ######################'
 echo '######################################################'
-curl -s https://gist.githubusercontent.com/Tadly/0e65d30f279a34c33e9b/raw/pacaur_install.sh | /bin/bash -l
+cd /tmp || exit 1
+buildroot="$(mktemp -d)"
+sudo -v
+gpg --recv-keys --keyserver hkp://pgp.mit.edu 1EB2638FF56C0C53
+sudo pacman -S --needed --noconfirm base-devel git
+mkdir -p "$buildroot"
+cd "$buildroot" || exit 1
+git clone "https://aur.archlinux.org/cower.git"
+git clone "https://aur.archlinux.org/pacaur.git"
+cd "${buildroot}/cower" || exit 1
+makepkg --syncdeps --install --noconfirm
+cd "${buildroot}/pacaur" || exit 1
+makepkg --syncdeps --install --noconfirm
+cd /tmp || exit 1
+rm -rf "$buildroot"
 
-echo '######################################################'
-echo '########### INSTALLING STUFF ############'
-echo '######################################################'
-cd
+
 file="/usr/bin/pacaur"
 if [ -f "$file" ]
 then
 	echo "$file found."
 else
-	echo "$file not found."
+  echo '######################################################'
+	echo "ERROR: $file not found."
+  echo '######################################################'
   echo 'Dropping into shell'
   bash
 fi
 
+echo '######################################################'
+echo '########### INSTALLING STUFF ############'
+echo '######################################################'
+cd
 pacaur -Sy --noedit --noconfirm vim-runtime vim-airline vim-airline-themes
 pacaur -Sy --noedit --noconfirm i3-gaps i3status rxvt-unicode stow xterm rofi
 pacaur -Sy --noedit --noconfirm powerline powerline-common powerline-fonts-git
@@ -80,4 +98,4 @@ openssl enc -aes-256-cbc -d -in /tmp/ssh.tar.gz.enc | tar xz
 srm /tmp/ssh.tar.gz.enc
 
 echo '########## DONE - Droping into a shell: ##############'
-zsh
+/usr/bin/zsh
