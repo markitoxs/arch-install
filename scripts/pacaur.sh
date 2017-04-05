@@ -1,7 +1,27 @@
-#!/usr/bin/env bash
-#
+#!/bin/bash -l
+
+set -e 
+
+# Install pacaur
+echo '######################################################'
+echo '############ Installing  PACAUR ######################'
+echo '######################################################'
+curl -s https://gist.githubusercontent.com/Tadly/0e65d30f279a34c33e9b/raw/pacaur_install.sh | /bin/bash -l
+
+echo '######################################################'
 echo '########### INSTALLING STUFF ############'
+echo '######################################################'
 cd
+file="/usr/bin/pacaur"
+if [ -f "$file" ]
+then
+	echo "$file found."
+else
+	echo "$file not found."
+  echo 'Dropping into shell'
+  bash
+fi
+
 pacaur -Sy --noedit --noconfirm vim-runtime vim-airline vim-airline-themes
 pacaur -Sy --noedit --noconfirm i3-gaps i3status rxvt-unicode stow xterm rofi
 pacaur -Sy --noedit --noconfirm powerline powerline-common powerline-fonts-git

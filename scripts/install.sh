@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 DISK="/dev/$1"
 BOOT="${DISK}2"
 ROOT="${DISK}3"
@@ -86,9 +87,11 @@ echo "##################################################"
 # Enter the new system & Execute new stuff
 arch-chroot /mnt ./chroot.sh
 
+
 ## Once done remove non necessary files and reboot
 rm /mnt/chroot.sh
 rm /mnt/pacaur.sh
 rm /mnt/authorized_keys
+rm /mnt/pacaur.sh
 umount -R /mnt
 systemctl reboot

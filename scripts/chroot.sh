@@ -1,12 +1,14 @@
 #!/bin/bash
+set -e
+
 HOST=jorgito
 USERNAME=markitoxs
 HOME_DIR="/home/${USERNAME}"
 SWAP_SIZE=4G
 
 # mount run to bypass lvmetadata errors
-mkdir /run/lvm
-mount --bind /hostrun/lvm /run/lvm
+#mkdir /run/lvm
+#mount --bind /hostrun/lvm /run/lvm
 
 # Add 'ext4' to MODULES
 # Add 'encrypt' and 'lvm2' to HOOKS before filesystems
@@ -76,7 +78,6 @@ echo '######################################################'
 echo '############ Installing  PACAUR ######################'
 echo '######################################################'
 
-sudo -H -u markitoxs bash -c 'curl -s https://gist.githubusercontent.com/Tadly/0e65d30f279a34c33e9b/raw/pacaur_install.sh | /bin/bash -l'
 
 echo '######################################################'
 echo '######################################################'
@@ -84,4 +85,4 @@ echo ' Doing custom stuff'
 echo '######################################################'
 echo '######################################################'
 
-sudo -H -u markitoxs bash -c './pacaur.sh'
+sudo -u $USERNAME ./pacaur.sh
