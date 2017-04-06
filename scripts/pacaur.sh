@@ -44,7 +44,7 @@ pacaur -Sy --noedit --noconfirm vim-runtime vim-airline vim-airline-themes
 pacaur -Sy --noedit --noconfirm i3-gaps i3status rxvt-unicode stow xterm rofi
 pacaur -Sy --noedit --noconfirm powerline powerline-common powerline-fonts-git
 pacaur -Sy --noedit --noconfirm virtualbox-guest-modules-arch virtualbox-guest-utils
-pacaur -Sy --noedit --noconfirm xorg-server xorg-xinit
+pacaur -Sy --noedit --noconfirm xorg-server xorg-xinit xf86-video-fbdev
 pacaur -Sy --noedit --noconfirm firefox lastpass imagemagick feh
 
 # dev toolchain
