@@ -48,8 +48,8 @@ pacaur -Sy --noedit --noconfirm xorg-server xorg-xinit xf86-video-fbdev
 pacaur -Sy --noedit --noconfirm firefox lastpass imagemagick feh
 
 # dev toolchain
-pacaur -Sy --noedit --noconfirm rbenv ruby ruby-build
-rbenv install 2.3.0
+pacaur -Sy --noedit --noconfirm rbenv ruby ruby-build openssl
+rbenv install 2.4.0
 
 echo '############# Clone dotfiles ##############'
 git clone https://github.com/markitoxs/.dotfiles.git
@@ -89,7 +89,7 @@ git clone https://github.com/alexgisby/imgur-album-downloader.git ~/src/imgur-al
 mkdir -p ~/img/
 python ~/src/imgur-album-downloader/imguralbum.py http://imgur.com/a/0pe3o ~/img/
 python ~/src/imgur-album-downloader/imguralbum.py http://imgur.com/a/XgYEs ~/img/
-
+python ~/src/imgur-album-downloader/imguralbum.py http://imgur.com/a/niMWO ~/img/
 # SSH KEY STUFF
 # tar cz folder_to_encrypt | openssl enc -aes-256-cbc -e > out.tar.gz.enc
 # openssl enc -aes-256-cbc -d -in out.tar.gz.enc | tar xz

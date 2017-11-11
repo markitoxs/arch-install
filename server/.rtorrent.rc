@@ -1,0 +1,58 @@
+port_range = 49164-49170
+peer_exchange = yes
+
+#dht = auto
+#dht_port = 6881
+
+max_peers_seed = 5000
+max_uploads = 30
+upload_rate = 10
+
+# Enable the default ratio group.
+ratio.enable=
+
+# Change the limits, the defaults should be sufficient.
+ratio.min.set=1
+ratio.max.set=2
+ratio.upload.set=2M
+
+# Changing the command triggered when the ratio is reached.
+system.method.set = group.seeding.ratio.command, d.close=, d.erase=
+ 
+# Set whetever the client should try to connect to UDP trackers.
+use_udp_trackers = yes
+
+# Where do you want your downloads to go?
+directory = /mnt/tera/downloads/
+system.umask.set = 0000
+
+# You can put this anywhere you like, but I put it here.
+# Remember that you'll have to create this directory
+session = ~/.rtorrent/session
+
+
+
+#encription
+encryption=allow_incoming,try_outgoing,enable_retry
+
+scgi_port = :5000
+log.xmlrpc  = /tmp/log/xmlrpc.log
+
+log.open_file = "rtorrent.log", (cat,/tmp/rtorrent.log)  
+log.open_file = "tracker.log", (cat,/tmp/tracker.log)  
+
+log.add_output = "info", "rtorrent.log"
+
+log.add_output = "dht_debug", "tracker.log"
+log.add_output = "tracker_debug", "tracker.log"
+
+
+#TVSHOWS LABEL
+
+# magnet and labels
+load.normal=magneturl,d.custom1.set=label
+
+# Add new method to get finished dir
+system.method.insert = d.get_finished_dir,simple,"cat=/mnt/tera/downloads/,$d.get_custom1="
+
+system.method.set_key = event.download.finished,move_complete,"d.set_directory=$d.get_finished_dir=;execute=mkdir,-p,$d.get_finished_dir=;execute=mv,-u,$d.get_base_path=,$d.get_finished_dir="
