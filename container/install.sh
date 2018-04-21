@@ -1,5 +1,33 @@
 systemctl disable systemd-networkd 
 dhcpcd eth0 
-pacman -Sy --noconfirm base-devel zsh
+pacman -Sy --noconfirm base-devel zsh git
+
 # Set up user
-pac
+USERNAME=markitoxs
+HOME_DIR="/home/${USERNAME}"
+
+echo -e 'runtime! archlinux.vim\nsyntax on' > /etc/skel/.vimrc
+
+## adding your normal user with additional wheel group so can sudo
+useradd -m -G wheel -s /bin/zsh "$USERNAME"
+
+ln -f -s /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
+hwclock --systohc
+
+# adjust your name servers here if you don't want to use google
+echo 'name_servers="8.8.8.8 8.8.4.4"' >> /etc/resolvconf.conf
+echo en_US.UTF-8 UTF-8 > /etc/locale.gen
+echo LANG=en_US.UTF-8 > /etc/locale.conf
+locale-gen
+
+# because we are using ssh keys, make sudo not ask for passwords
+echo 'root ALL=(ALL) ALL' > /etc/sudoers
+echo '%wheel ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
+
+# I like to use vim :)
+echo -e 'EDITOR=vim' > /etc/environment
+
+sudo -u markitoxs touch /home/markitoxs/.zshrc
+
+
+# Switch to user
