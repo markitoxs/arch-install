@@ -31,3 +31,13 @@ sudo -u markitoxs touch /home/markitoxs/.zshrc
 
 
 # Switch to user
+
+mkdir ~/src/
+cd ~/src/
+git clone https://aur.archlinux.org/trizen.git
+cd trizen
+makepkg -si
+
+
+# now we have trizen!
+
