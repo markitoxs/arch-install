@@ -40,4 +40,7 @@ makepkg -si --install --noconfirm
 
 
 # now we have trizen!
+trizen -Sy --noedit --noconfirm vim-runtime vim-airline vim-airline-themes
+trizen -Sy --noedit --noconfirm powerline powerline-common powerline-fonts-git
+trizen -Sy --noedit --noconfirm terraform code
 
