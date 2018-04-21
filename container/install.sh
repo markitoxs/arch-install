@@ -27,11 +27,11 @@ echo '%wheel ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 # I like to use vim :)
 echo -e 'EDITOR=vim' > /etc/environment
 
+# prevent zsh setup
 sudo -u markitoxs touch /home/markitoxs/.zshrc
 
-
 # Switch to user
-
+sudo -u markitoxs bash << EOF
 mkdir ~/src/
 cd ~/src/
 git clone https://aur.archlinux.org/trizen.git
@@ -43,4 +43,4 @@ makepkg -si --install --noconfirm
 trizen -Sy --noedit --noconfirm vim-runtime vim-airline vim-airline-themes
 trizen -Sy --noedit --noconfirm powerline powerline-common powerline-fonts-git
 trizen -Sy --noedit --noconfirm terraform code
-
+EOF
