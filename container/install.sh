@@ -1,6 +1,6 @@
 systemctl disable systemd-networkd 
 dhcpcd eth0 
-pacman -Sy --noconfirm base-devel zsh git
+pacman -Sy --noconfirm base-devel zsh git vim
 
 # Set up user
 USERNAME=markitoxs
@@ -36,7 +36,7 @@ mkdir ~/src/
 cd ~/src/
 git clone https://aur.archlinux.org/trizen.git
 cd trizen
-makepkg -si
+makepkg -si --install --noconfirm
 
 
 # now we have trizen!
