@@ -13,7 +13,7 @@ sudo apt-get install -y code # or code-insiders
 sudo apt-get install -y git
 
 # Install terraform
-curl -O terraform.zip https://releases.hashicorp.com/terraform/0.11.7/terraform_0.11.7_linux_amd64.zip
+curl -o terraform.zip https://releases.hashicorp.com/terraform/0.11.7/terraform_0.11.7_linux_amd64.zip
 unzip terraform.zip
 mkdir -p ./local/bin
 mv terraform ./local/bin
