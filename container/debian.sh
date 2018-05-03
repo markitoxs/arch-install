@@ -25,5 +25,5 @@ export PATH
 sudo apt-get install -y zsh
 chsh $(whoami) -s $(which zsh)
 
-
-ca 
+# Install python
+sudo apt-get install -y python
