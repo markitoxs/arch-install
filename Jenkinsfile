@@ -6,5 +6,10 @@ pipeline {
         input(message: 'Do you want to execute?', ok: 'Yes')
       }
     }
+    stage('get version') {
+      steps {
+        sh 'terraform --version'
+      }
+    }
   }
 }
