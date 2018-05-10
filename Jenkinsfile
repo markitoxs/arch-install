@@ -1,9 +1,9 @@
 pipeline {
   agent any
   stages {
-    stage('') {
+    stage('terraform plan') {
       steps {
-        echo 'Hello'
+        input(message: 'Yes or NO?', id: 'choice', ok: 'yes')
       }
     }
   }
