@@ -1,5 +1,10 @@
 pipeline {
-  agent any
+  agent {
+    node {
+      label 'ecs'
+    }
+
+  }
   stages {
     stage('terraform plan') {
       steps {
