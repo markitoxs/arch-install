@@ -2,8 +2,19 @@ pipeline {
   agent any
   stages {
     stage('terraform plan') {
-      steps {
-        input(message: 'Do you want to execute?', ok: 'Yes')
+      parallel {
+        stage('terraform plan') {
+          steps {
+            input(message: 'Do you want to execute?', ok: 'Yes')
+          }
+        }
+        stage('path echo') {
+          steps {
+            sh '''echo $PATH
+
+'''
+          }
+        }
       }
     }
     stage('get version') {
